@@ -8,10 +8,13 @@ jobs:
     steps:
       - name: testing secrets
         run: |
-          echo "$DEVOPS"
+          if [ "$DEVOPS" == "DevOpsHint" ]
+          then
+            echo "Got our secret"
+          fi
         env:
           DEVOPS: ${{ secrets.SECRETS_TOKEN}}
-          
+
       - name: Environment variables
         run: |
           echo "GITHUB_ACTION: ${GITHUB_ACTION}"
